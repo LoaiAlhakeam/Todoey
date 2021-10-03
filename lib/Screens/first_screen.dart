@@ -1,11 +1,26 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:todoey_flutter/Screens/add_task_screen.dart';
+import 'package:todoey_flutter/Components/task_item.dart';
 
 class FirstScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showModalBottomSheet<void>(
+            context: context,
+            builder: (context) => AddTaskScreen(),
+          );
+        },
+        backgroundColor: Colors.lightBlueAccent,
+        child: Icon(
+          Icons.add,
+          size: 40.0,
+          color: Colors.white,
+        ),
+      ),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,24 +62,24 @@ class FirstScreen extends StatelessWidget {
             ),
             Expanded(
               child: Container(
+                padding: EdgeInsets.all(5.0),
                 decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(25.0),
-                      topRight: Radius.circular(25.0),
-                    )),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20.0),
+                    topRight: Radius.circular(20.0),
+                  ),
+                ),
+                child: ListView(
+                  children: [
+                    TaskItem(),
+                    TaskItem(),
+                    TaskItem(),
+                  ],
+                ),
               ),
             ),
           ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: Colors.lightBlueAccent,
-        child: Icon(
-          Icons.add,
-          size: 40.0,
-          color: Colors.white,
         ),
       ),
     );
